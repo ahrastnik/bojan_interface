@@ -1,0 +1,9 @@
+# Python
+__pycache__/
+*.pyc
+
+# Visual Studio Code
+.vscode/
+
+# PyCharm
+.idea/
