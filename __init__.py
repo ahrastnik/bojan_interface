@@ -4,10 +4,12 @@ Bojan interface
 NEMI - 2019
 """
 
+def connection_main():
+    pass
 
 def main():
     """ Main function """
-    pass
+    connection_main()
 
 
 if __name__ == '__main__':
