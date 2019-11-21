@@ -3,6 +3,8 @@ Bojan interface
 
 NEMI - 2019
 """
+from connection.controls import BojanControls
+
 
 def connection_main():
     pass
