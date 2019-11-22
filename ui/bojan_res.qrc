@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="/img">
+    <file>img/bojan_kral.jpg</file>
+    <file>img/domov.png</file>
+    <file>img/puscica_desno.png</file>
+    <file>img/puscica_dol.png</file>
+    <file>img/puscica_gor.png</file>
+    <file>img/puscica_levo.png</file>
+  </qresource>
+</RCC>
