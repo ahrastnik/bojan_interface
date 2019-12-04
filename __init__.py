@@ -16,6 +16,7 @@ YINC = 2
 XDEC = 3
 YDEC = 4
 
+
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
@@ -25,10 +26,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.gridLayout_3.addWidget(self.joystick, 3, 1)
         self.load_img_btn.clicked.connect(self.get_image)
 
-        
-
     def get_image(self):
-        fname = QFileDialog.getOpenFileName(self, 'Open file','c:\\', "Image files (*.txt)")
+        fname = QFileDialog.getOpenFileName(self, 'Open file', 'c:\\', "Image files (*.txt)")
         file = fname[0]
         if len(file) != 0:
             read = open(file)
@@ -36,7 +35,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.fileName.setText(file)
         else:
             print('nothing to see here')
-
 
     def jog_mode(self, direction, velocity):
         pass
@@ -75,9 +73,13 @@ def ui_main():
     sys.exit(app.exec_())
 
 
+def connection_main():
+    pass
+
 def main():
     """ Main function """
     ui_main()
+    connection_main()
 
 
 if __name__ == '__main__':
