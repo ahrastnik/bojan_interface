@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1028</width>
-    <height>860</height>
+    <height>863</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -38,8 +38,8 @@
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>0</y>
-          <width>495</width>
+          <y>-10</y>
+          <width>491</width>
           <height>391</height>
          </rect>
         </property>
@@ -130,6 +130,104 @@ border-radius:7%;</string>
             </property>
            </widget>
           </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>21</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Luckiest Guy</family>
+              <pointsize>16</pointsize>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>JOG</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" alignment="Qt::AlignHCenter">
+           <widget class="QPushButton" name="y_inc">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>50</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>50</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Luckiest Guy</family>
+             </font>
+            </property>
+            <property name="contextMenuPolicy">
+             <enum>Qt::NoContextMenu</enum>
+            </property>
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">image: url(C:/Users/jakak/Desktop/Jaka/Šola/4.letnik/NEMI/bojan_interface/ui/img/puscica_gor.png);
+background-color:white;
+border-radius:25px;
+</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="4" column="1">
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
           <item row="3" column="3">
            <widget class="QPushButton" name="pause_btn">
             <property name="minimumSize">
@@ -167,48 +265,8 @@ border-radius:7%;</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label">
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>21</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Luckiest Guy</family>
-              <pointsize>16</pointsize>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>JOG</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <spacer name="verticalSpacer">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="1" column="1">
-           <widget class="QPushButton" name="y_inc">
+          <item row="3" column="2">
+           <widget class="QPushButton" name="x_inc">
             <property name="minimumSize">
              <size>
               <width>50</width>
@@ -226,35 +284,44 @@ border-radius:7%;</string>
               <family>Luckiest Guy</family>
              </font>
             </property>
-            <property name="contextMenuPolicy">
-             <enum>Qt::NoContextMenu</enum>
-            </property>
             <property name="styleSheet">
-             <string notr="true">image: url(C:/Users/jakak/Desktop/Jaka/Šola/4.letnik/NEMI/bojan_interface/ui/img/puscica_gor.png);
+             <string notr="true">image: url(C:/Users/jakak/Desktop/Jaka/Šola/4.letnik/NEMI/bojan_interface/ui/img/puscica_desno.png);
 background-color:white;
-border-radius:25px;
-</string>
+border-radius:25px;</string>
             </property>
             <property name="text">
              <string/>
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
-           <spacer name="verticalSpacer_2">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
+          <item row="5" column="1" alignment="Qt::AlignHCenter">
+           <widget class="QPushButton" name="y_decr">
+            <property name="minimumSize">
              <size>
-              <width>20</width>
-              <height>40</height>
+              <width>50</width>
+              <height>50</height>
              </size>
             </property>
-           </spacer>
+            <property name="maximumSize">
+             <size>
+              <width>50</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Luckiest Guy</family>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">image: url(C:/Users/jakak/Desktop/Jaka/Šola/4.letnik/NEMI/bojan_interface/ui/img/puscica_dol.png);
+background-color:white;
+border-radius:25px;</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
           </item>
           <item row="5" column="3">
            <widget class="QPushButton" name="calibrate_btn">
@@ -293,8 +360,8 @@ border-radius:7%;</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="2">
-           <widget class="QPushButton" name="x_inc">
+          <item row="3" column="0">
+           <widget class="QPushButton" name="x_decr">
             <property name="minimumSize">
              <size>
               <width>50</width>
@@ -313,7 +380,7 @@ border-radius:7%;</string>
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">image: url(C:/Users/jakak/Desktop/Jaka/Šola/4.letnik/NEMI/bojan_interface/ui/img/puscica_desno.png);
+             <string notr="true">image: url(C:/Users/jakak/Desktop/Jaka/Šola/4.letnik/NEMI/bojan_interface/ui/img/puscica_levo.png);
 background-color:white;
 border-radius:25px;</string>
             </property>
@@ -321,54 +388,9 @@ border-radius:25px;</string>
              <string/>
             </property>
            </widget>
-          </item>
-          <item row="5" column="1">
-           <widget class="QPushButton" name="y_decr">
-            <property name="minimumSize">
-             <size>
-              <width>50</width>
-              <height>50</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>50</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Luckiest Guy</family>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">image: url(C:/Users/jakak/Desktop/Jaka/Šola/4.letnik/NEMI/bojan_interface/ui/img/puscica_dol.png);
-background-color:white;
-border-radius:25px;</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="1">
-           <spacer name="verticalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
           </item>
           <item row="1" column="3">
-           <widget class="QPushButton" name="play_btn">
+           <widget class="QPushButton" name="start_btn">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -404,60 +426,12 @@ border-radius:7%;</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="0">
-           <widget class="QPushButton" name="x_decr">
-            <property name="minimumSize">
-             <size>
-              <width>50</width>
-              <height>50</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>50</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Luckiest Guy</family>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">image: url(C:/Users/jakak/Desktop/Jaka/Šola/4.letnik/NEMI/bojan_interface/ui/img/puscica_levo.png);
-background-color:white;
-border-radius:25px;</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="2" colspan="3">
+          <item row="1" column="4" rowspan="5">
            <widget class="QSlider" name="velocitySlider">
-            <property name="pageStep">
-             <number>100</number>
-            </property>
             <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+             <enum>Qt::Vertical</enum>
             </property>
            </widget>
-          </item>
-          <item row="2" column="4">
-           <spacer name="horizontalSpacer">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>30</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
           </item>
          </layout>
         </widget>
@@ -467,8 +441,8 @@ border-radius:25px;</string>
          <rect>
           <x>510</x>
           <y>0</y>
-          <width>495</width>
-          <height>391</height>
+          <width>491</width>
+          <height>381</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -713,12 +687,12 @@ border: 2px solid #457cb6;
 border-radius:7%;</string>
             </property>
             <property name="text">
-             <string>Naloži sliko</string>
+             <string>Naloži datoteko</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="x_poz_2">
+           <widget class="QLabel" name="fileName">
             <property name="maximumSize">
              <size>
               <width>16777215</width>
@@ -764,8 +738,8 @@ font: 8pt &quot;Luckiest Guy&quot;;</string>
         <property name="geometry">
          <rect>
           <x>0</x>
-          <y>410</y>
-          <width>495</width>
+          <y>400</y>
+          <width>491</width>
           <height>401</height>
          </rect>
         </property>
@@ -800,12 +774,26 @@ font: 8pt &quot;Luckiest Guy&quot;;</string>
           <string>    Ukazi (GCODE)</string>
          </property>
         </widget>
+        <widget class="QTextBrowser" name="gcodeDisplay">
+         <property name="geometry">
+          <rect>
+           <x>25</x>
+           <y>31</y>
+           <width>441</width>
+           <height>351</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color:#000000;
+color:#f0f0f0;</string>
+         </property>
+        </widget>
        </widget>
        <widget class="QFrame" name="frame_2">
         <property name="geometry">
          <rect>
           <x>510</x>
-          <y>410</y>
+          <y>400</y>
           <width>495</width>
           <height>401</height>
          </rect>
@@ -822,9 +810,9 @@ font: 8pt &quot;Luckiest Guy&quot;;</string>
         <widget class="QGraphicsView" name="predogled">
          <property name="geometry">
           <rect>
-           <x>20</x>
+           <x>30</x>
            <y>30</y>
-           <width>461</width>
+           <width>431</width>
            <height>351</height>
           </rect>
          </property>
@@ -877,7 +865,16 @@ font: 8pt &quot;Luckiest Guy&quot;;</string>
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1028</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

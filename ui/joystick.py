@@ -17,7 +17,7 @@ class Direction(Enum):
 class Joystick(QWidget):
     def __init__(self, parent=None):
         super(Joystick, self).__init__(parent)
-        self.setMinimumSize(110, 110)
+        self.setMinimumSize(150, 150)
         self.movingOffset = QPointF(0, 0)
         self.grabCenter = False
         self.__maxDistance = 50
