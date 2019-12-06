@@ -54,19 +54,19 @@ class Ui_MainWindow(object):
 "border-radius:7%;")
         self.stop_btn.setObjectName("stop_btn")
         self.gridLayout_3.addWidget(self.stop_btn, 2, 3, 1, 1)
-        self.vodenje = QtWidgets.QPushButton(self.gridLayoutWidget_2)
-        self.vodenje.setMinimumSize(QtCore.QSize(0, 30))
-        self.vodenje.setMaximumSize(QtCore.QSize(90, 16777215))
+        self.risi_btn = QtWidgets.QPushButton(self.gridLayoutWidget_2)
+        self.risi_btn.setMinimumSize(QtCore.QSize(0, 30))
+        self.risi_btn.setMaximumSize(QtCore.QSize(90, 16777215))
         font = QtGui.QFont()
         font.setFamily("Luckiest Guy")
-        self.vodenje.setFont(font)
-        self.vodenje.setStyleSheet("background-color: white;\n"
+        self.risi_btn.setFont(font)
+        self.risi_btn.setStyleSheet("background-color: white;\n"
 "color: rgb(69, 124, 182);\n"
 "color: black;\n"
 "border: 2px solid #457cb6;\n"
 "border-radius:7%;")
-        self.vodenje.setObjectName("vodenje")
-        self.gridLayout_3.addWidget(self.vodenje, 4, 3, 1, 1)
+        self.risi_btn.setObjectName("risi_btn")
+        self.gridLayout_3.addWidget(self.risi_btn, 4, 3, 1, 1)
         self.label = QtWidgets.QLabel(self.gridLayoutWidget_2)
         self.label.setMaximumSize(QtCore.QSize(16777215, 21))
         font = QtGui.QFont()
@@ -79,25 +79,27 @@ class Ui_MainWindow(object):
         self.label.setObjectName("label")
         self.gridLayout_3.addWidget(self.label, 0, 0, 1, 1)
         self.y_inc = QtWidgets.QPushButton(self.gridLayoutWidget_2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.y_inc.sizePolicy().hasHeightForWidth())
         self.y_inc.setSizePolicy(sizePolicy)
-        self.y_inc.setMinimumSize(QtCore.QSize(0, 50))
+        self.y_inc.setMinimumSize(QtCore.QSize(50, 50))
         self.y_inc.setMaximumSize(QtCore.QSize(50, 16777215))
         font = QtGui.QFont()
         font.setFamily("Luckiest Guy")
         self.y_inc.setFont(font)
+        self.y_inc.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.y_inc.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
         self.y_inc.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.y_inc.setStyleSheet("image: url(C:/Users/jakak/Desktop/Jaka/Šola/4.letnik/NEMI/bojan_interface/ui/img/puscica_gor.png);\n"
 "background-color:white;\n"
 "border-radius:25px;\n"
+"\n"
 "")
         self.y_inc.setText("")
         self.y_inc.setObjectName("y_inc")
-        self.gridLayout_3.addWidget(self.y_inc, 1, 1, 1, 1)
+        self.gridLayout_3.addWidget(self.y_inc, 1, 1, 1, 1, QtCore.Qt.AlignHCenter)
         spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         self.gridLayout_3.addItem(spacerItem, 2, 1, 1, 1)
         spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
@@ -122,6 +124,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Luckiest Guy")
         self.x_inc.setFont(font)
+        self.x_inc.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.x_inc.setStyleSheet("image: url(C:/Users/jakak/Desktop/Jaka/Šola/4.letnik/NEMI/bojan_interface/ui/img/puscica_desno.png);\n"
 "background-color:white;\n"
 "border-radius:25px;")
@@ -134,12 +137,13 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Luckiest Guy")
         self.y_decr.setFont(font)
+        self.y_decr.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.y_decr.setStyleSheet("image: url(C:/Users/jakak/Desktop/Jaka/Šola/4.letnik/NEMI/bojan_interface/ui/img/puscica_dol.png);\n"
 "background-color:white;\n"
 "border-radius:25px;")
         self.y_decr.setText("")
         self.y_decr.setObjectName("y_decr")
-        self.gridLayout_3.addWidget(self.y_decr, 5, 1, 1, 1)
+        self.gridLayout_3.addWidget(self.y_decr, 5, 1, 1, 1, QtCore.Qt.AlignHCenter)
         self.calibrate_btn = QtWidgets.QPushButton(self.gridLayoutWidget_2)
         self.calibrate_btn.setMinimumSize(QtCore.QSize(0, 30))
         self.calibrate_btn.setMaximumSize(QtCore.QSize(90, 16777215))
@@ -160,6 +164,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Luckiest Guy")
         self.x_decr.setFont(font)
+        self.x_decr.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.x_decr.setStyleSheet("image: url(C:/Users/jakak/Desktop/Jaka/Šola/4.letnik/NEMI/bojan_interface/ui/img/puscica_levo.png);\n"
 "background-color:white;\n"
 "border-radius:25px;")
@@ -300,11 +305,14 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setFamily("Luckiest Guy")
         self.load_img_btn.setFont(font)
+        self.load_img_btn.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.load_img_btn.setStyleSheet("background-color: white;\n"
 "color: rgb(69, 124, 182);\n"
 "color: black;\n"
 "border: 2px solid #457cb6;\n"
-"border-radius:7%;")
+"border-radius:7%;\n"
+"")
+        self.load_img_btn.setFlat(False)
         self.load_img_btn.setObjectName("load_img_btn")
         self.verticalLayout.addWidget(self.load_img_btn)
         self.fileName = QtWidgets.QLabel(self.verticalLayoutWidget)
@@ -375,6 +383,18 @@ class Ui_MainWindow(object):
         self.frame_5.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_5.setObjectName("frame_5")
         self.gridLayout_5.addWidget(self.frame_5, 0, 0, 1, 1)
+        self.nazaj_btn = QtWidgets.QPushButton(self.widget)
+        font = QtGui.QFont()
+        font.setFamily("Luckiest Guy")
+        font.setPointSize(12)
+        self.nazaj_btn.setFont(font)
+        self.nazaj_btn.setStyleSheet("background-color: white;\n"
+"color: rgb(69, 124, 182);\n"
+"color: black;\n"
+"border: 2px solid #457cb6;\n"
+"border-radius:7%;")
+        self.nazaj_btn.setObjectName("nazaj_btn")
+        self.gridLayout_5.addWidget(self.nazaj_btn, 1, 0, 1, 1)
         self.gridLayout_2.addWidget(self.widget, 0, 0, 1, 1)
         self.stackedWidget.addWidget(self.page_2)
         self.gridLayout.addWidget(self.stackedWidget, 0, 0, 1, 1)
@@ -385,14 +405,14 @@ class Ui_MainWindow(object):
         MainWindow.setMenuBar(self.menuBar)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Bojan"))
         self.stop_btn.setText(_translate("MainWindow", "Stop"))
-        self.vodenje.setText(_translate("MainWindow", "vodenje"))
+        self.risi_btn.setText(_translate("MainWindow", "rIŠI"))
         self.label.setText(_translate("MainWindow", "JOG"))
         self.pause_btn.setText(_translate("MainWindow", "Pavza"))
         self.calibrate_btn.setText(_translate("MainWindow", "Kalibriraj"))
@@ -404,3 +424,4 @@ class Ui_MainWindow(object):
         self.fileName.setText(_translate("MainWindow", "Ime datoteke"))
         self.label_4.setText(_translate("MainWindow", "    Ukazi (GCODE)"))
         self.label_6.setText(_translate("MainWindow", "     Predogled"))
+        self.nazaj_btn.setText(_translate("MainWindow", "Nazaj"))
