@@ -3,9 +3,12 @@ Bojan communication
 """
 import serial                       # import pySerial
 from serial.tools import list_ports
+from time import sleep
+from queue import Empty
 
 
 class Communication:
+
 
     def __init__(self, RXqueue, TXqueue):
         self.TXqueue = TXqueue
@@ -31,6 +34,7 @@ class SerialCom(Communication):
     SERIAL_COMMAND_DISCONNECT = "SERIAL_COMMAND_DISCONNECT"
     SERIAL_COMMAND_WRITE = "SERIAL_COMMAND_WRITE"
     SERIAL_COMMAND_READ = "SERIAL_COMMAND_READ"
+    SERIAL_COMMAND_RESPONSE = "ACK"
 
     def __init__(self, RXqueue=None, TXqueue=None):
         # super().__init__() - call from base class
@@ -43,8 +47,11 @@ class SerialCom(Communication):
         self.__started = True
 
         while self.__started:
-            package = self.TXqueue.get(block=True, timeout=None)
-            self._command_handler(package)
+            try:
+                package = self.TXqueue.get(block=True, timeout=1.0)
+                print(package)#self._command_handler(package)
+            except Empty:
+                pass
 
     def _command_handler(self, package):
         # Split package
@@ -54,7 +61,7 @@ class SerialCom(Communication):
             self.scan_ports()
             return
         elif command == SerialCom.SERIAL_COMMAND_CONNECT:
-            self.serial_connect(data[0],data[1])
+            self.serial_connect(data[0], data[1])
             return
         elif command == SerialCom.SERIAL_COMMAND_DISCONNECT:
             self.disconnect()
@@ -95,9 +102,17 @@ class SerialCom(Communication):
     def write(self, data):
         self.ser.write(data.encode('utf-8'))
         self.ser.flush()
+        while True:
+            ack = self.read()
+            if ack == SerialCom.SERIAL_COMMAND_RESPONSE:
+                break
+            sleep(0.005)
+
+    def close_thread(self):
+        self.__started = False
 
     def read(self):                        #Serial send
         data = self.ser.readline()
         data = data.decode("utf-8")
-        data = data[0:-2]
+        data = data[0:-1]
         return data

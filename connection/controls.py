@@ -5,9 +5,17 @@ from time import sleep
 from connection.communication import SerialCom
 
 class BojanControls:
-    COMMAND_JOG = "J "
-    COMMAND_WORK_MOVE = "G1"
-    COMMAND_FAST_MOVE = "G0"
+    COMMAND_FAST_MOVE = 'G00'
+    COMMAND_WORK_MOVE = 'G01'
+    COMMAND_ABS_POS = 'G91'
+    COMMAND_INC_POS = 'G90'
+    COMMAND_STOP = 'M112'
+    COMMAND_LIST = (
+        COMMAND_FAST_MOVE,
+        COMMAND_WORK_MOVE,
+        COMMAND_ABS_POS,
+        COMMAND_INC_POS,
+        COMMAND_STOP)
 
     def __init__(self):
         self.RX_queue = Queue()
@@ -15,13 +23,16 @@ class BojanControls:
 
         self.comm = SerialCom(RXqueue = self.RX_queue, TXqueue=self.TX_queue)
 
-        comm_thread = Thread(name="Communication thread", target=self.comm.run)
-        comm_thread.start()
+        self.comm_thread = Thread(name="Communication thread", target=self.comm.run)
+        self.comm_thread.start()
 
     def read_RXqueue(self):
         # Read command from communication queue
         return self.RX_queue.get(block=False)
 
+
+    def emergency_stop(self):
+        self._send_command(SerialCom.SERIAL_COMMAND_WRITE, BojanControls.COMMAND_STOP)
 
     def _send_command(self, command, data=None):
         # Make package
@@ -45,16 +56,24 @@ class BojanControls:
         for line in gcode:
             self._send_command(SerialCom.SERIAL_COMMAND_WRITE, line)
 
+    def close(self):
+        self.comm.close_thread()
+        #self.comm_thread.join()
+
     def jog(self, dir, vel):
-        x_dir = dir[0] * vel
-        y_dir = dir[1] * vel
+        if dir == "right":
+            pass
+        elif dir == "left":
+            pass
+        elif dir == "up":
+            pass
+        elif dir == "down":
+            pass
 
-        X = "X" + str(x_dir)
-        Y = "Y" + str(y_dir)
 
-        gCode = self.COMMAND_JOG + X + " " + Y
+        #gCode = "%s %s" % (self.COMMAND_WORK_MOVE, vel)
 
-        self._send_command(SerialCom.SERIAL_COMMAND_WRITE, gCode)
+        #self._send_command(SerialCom.SERIAL_COMMAND_WRITE, gCode)
 
 if __name__ == '__main__':
     controller = BojanControls()
