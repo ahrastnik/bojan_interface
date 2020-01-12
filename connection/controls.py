@@ -5,6 +5,7 @@ from time import sleep
 
 from connection.communication import SerialCom,CommThread
 
+
 class BojanControls:
     COMMAND_FAST_MOVE = 'G00'
     COMMAND_WORK_MOVE = 'G01'
@@ -13,6 +14,7 @@ class BojanControls:
     COMMAND_STOP = 'M112'
     COMMAND_PAUSE = 'M226'
     COMMAND_JOG = 'J69'
+
     COMMAND_LIST = (
         COMMAND_FAST_MOVE,
         COMMAND_WORK_MOVE,
@@ -20,13 +22,13 @@ class BojanControls:
         COMMAND_INC_POS,
         COMMAND_STOP,
         COMMAND_PAUSE,
-        COMMAND_JOG)
+        COMMAND_JOG
+    )
 
     def __init__(self):
         self.RX_queue = Queue()
         self.TX_queue = Queue()
 
-        #self.comm = SerialCom(RXqueue = self.RX_queue, TXqueue=self.TX_queue)
         self.comm_thread = CommThread(self.RX_queue, self.TX_queue)
         self.comm_thread.start()
 
@@ -35,9 +37,10 @@ class BojanControls:
         try:
             if self.RX_queue is None:
                 return None
-            queue = self.RX_queue.get_nowait()
+            data = self.RX_queue.get_nowait()
             self.RX_queue.task_done()
-            return print(queue)
+            # print(data)
+            return data
         except Empty:
             return None
 
@@ -48,7 +51,6 @@ class BojanControls:
         self._send_command(SerialCom.SERIAL_COMMAND_WRITE, BojanControls.COMMAND_STOP)
 
     def _send_command(self, command, data=None):
-        print(command)
         # Make package
         package = (
             command,
@@ -70,27 +72,27 @@ class BojanControls:
         for line in gcode:
             self._send_command(SerialCom.SERIAL_COMMAND_WRITE, line)
 
-
     def close(self):
-        self.comm.close_thread()
-        #self.comm_thread.join()
+        self.comm_thread.comm.close_thread()
+        # self.comm_thread.join()
 
     def jog(self, direction, vel):
         if direction == "right":
-            gCode = "%s %s%s" % (self.COMMAND_JOG, 'X', str(vel))
+            g_code = "%s %s%s" % (self.COMMAND_JOG, 'X', str(vel))
         elif direction == "left":
-            gCode = "%s %s%s" % (self.COMMAND_JOG, '-X', str(vel))
+            g_code = "%s %s%s" % (self.COMMAND_JOG, 'X-', str(vel))
         elif direction == "up":
-            gCode = "%s %s%s" % (self.COMMAND_JOG, 'Y', str(vel))
+            g_code = "%s %s%s" % (self.COMMAND_JOG, 'Y', str(vel))
         elif direction == "down":
-            gCode = "%s %s%s" % (self.COMMAND_JOG, '-Y', str(vel))
+            g_code = "%s %s%s" % (self.COMMAND_JOG, 'Y-', str(vel))
         elif direction == "":
-            gCode = "%s" % self.COMMAND_JOG
+            g_code = "%s" % self.COMMAND_JOG
         else:
-            gCode = "%s %s" % (self.COMMAND_JOG, direction)
-        print(gCode)
+            g_code = "%s %s" % (self.COMMAND_JOG, direction)
+        print(g_code)
 
-        self._send_command(SerialCom.SERIAL_COMMAND_WRITE, gCode)
+        self._send_command(SerialCom.SERIAL_COMMAND_WRITE, g_code)
+
 
 if __name__ == '__main__':
     controller = BojanControls()

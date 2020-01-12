@@ -104,7 +104,9 @@ class SerialCom(Communication, QThread):
         self.ser = None
 
     def write(self, data):
-        print(data)
+        # Append line termination
+        data += '\r\n'
+        # Write data
         self.ser.write(data.encode('utf-8'))
         print(data.encode('utf-8'))
         self.ser.flush()
@@ -127,3 +129,6 @@ class CommThread(QThread):
     def __init__(self, rx_queue, tx_queue):
         super().__init__()
         self.comm = SerialCom(RXqueue=rx_queue, TXqueue=tx_queue)
+
+    def run(self):
+        self.comm.run()

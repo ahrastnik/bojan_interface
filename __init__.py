@@ -36,7 +36,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pause = True #for pause button
         self.hitrost = self.velocitySlider.value()
         self.velocitySlider.sliderReleased.connect(lambda: self.value_change())
-        self.controls.connect('COM3', 115200)
+        self.controls.connect('COM9', 115200)
         self.jogTimer = QTimer()
 #   #   #       funkcije tipk       #    #    #
         self.load_img_btn.clicked.connect(self.get_image)
@@ -54,34 +54,30 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.y_inc.released.connect(lambda: self.jog_mode_release())
         self.y_decr.released.connect(lambda: self.jog_mode_release())
 
-
         timer = QTimer(self)
         timer.timeout.connect(self._command_handler)
         timer.start(1000)
-
-
-
 
     def value_change(self):
         self.hitrost = self.velocitySlider.value()
 
     def check_gcode(self, line):
-        x = line.split(' ')
-        if len(x) > 0:
-            if x[0] in BojanControls.COMMAND_LIST:
-                return self.command_handler(x)
+        line = line.split(' ')
+        if len(line) > 0:
+            if line[0] in BojanControls.COMMAND_LIST:
+                return self.command_handler(line)
         return False
 
-    def fix_termination(self,x):
-        return x[:-1] + '\r\n'
+    def fix_termination(self, x):
+        return x[:-1]
 
     def command_handler(self, x):
         if x[0] == BojanControls.COMMAND_FAST_MOVE:
             return True
-        elif x[0]  == BojanControls.COMMAND_WORK_MOVE:
-            return  True
-        elif x[0]  == BojanControls.COMMAND_ABS_POS:
-            return  True
+        elif x[0] == BojanControls.COMMAND_WORK_MOVE:
+            return True
+        elif x[0] == BojanControls.COMMAND_ABS_POS:
+            return True
         elif x[0] == BojanControls.COMMAND_INC_POS:
             return True
         else:
@@ -89,16 +85,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def get_image(self):
         fname = QFileDialog.getOpenFileName(self, 'Open file','c:\\', "Image files (*.ngc)")
-        file =  fname[0]
+        file = fname[0]
 
         if len(file) != 0:
             read = open(file)
             self.gcodeDisplay.setText(read.read())
             self.fileName.setText(file)
             for x in open(file):
+                x = self.fix_termination(x)
                 if self.check_gcode(x):
-                    self.gcode.append(self.fix_termination(x))
-            #self.controls.load_gcode(gcode)
+                    print(x)
+                    self.gcode.append(x)
         else:
             print('nothing to see here')
 
@@ -155,6 +152,7 @@ def ui_main():
 
 def connection_main():
     pass
+
 
 def main():
     """ Main function """
