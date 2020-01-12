@@ -123,8 +123,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def _command_handler(self):
         # Split package
-        return
-        command, data = self.controls.read_RXqueue()
+        package = self.controls.read_RXqueue()
+        # No package was received
+        if package is None:
+            return
+
+        command, data = package
 
         # Handle commands
         if command == SerialCom.SERIAL_COMMAND_SCAN:
@@ -156,6 +160,15 @@ def connection_main():
 
 def main():
     """ Main function """
+    sys._excepthook = sys.excepthook
+
+    def exception_hook(exctype, value, traceback):
+        print(exctype, value, traceback)
+        sys._excepthook(exctype, value, traceback)
+        sys.exit(1)
+
+    sys.excepthook = exception_hook
+
     ui_main()
     connection_main()
 
