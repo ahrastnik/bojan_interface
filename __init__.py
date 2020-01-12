@@ -3,12 +3,14 @@ Bojan interface
 
 NEMI - 2019
 """
-from PyQt5.QtCore import QTimer
+from PyQt5.QtCore import QTimer, QThread, QCoreApplication
 from PyQt5.QtWidgets import *
 
-from connection.communication import Communication
+from connection.communication import SerialCom
 from connection.controls import BojanControls
 import sys
+import time
+
 
 from ui.joystick import Joystick
 from ui.bojan import Ui_MainWindow
@@ -23,35 +25,45 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
         self.setupUi(self)
-        self.stackedWidget.setCurrentIndex(0)
-        self.joystick = Joystick()                              #naredi joystick widget
-        self.gridLayout_3.addWidget(self.joystick, 3, 1)
+        self.stackedWidget.setCurrentIndex(0)                          #naredi joystick widget
         self.controls = BojanControls()
+        self.joystick = Joystick(self.controls)
+        self.gridLayout_3.addWidget(self.joystick, 3, 1)
+        QAction("Quit",self).triggered.connect(lambda: self.close_event())
         self.gcode = []
-#   #   #   definicija spremenljivk #    #    #
-
-        #   #   #   slider   #   #   #
-
-
-
+        self.port = ['COM1','COM2','COM3']
+        self.progressBar.hide()
+        self.pause = True #for pause button
+        self.hitrost = self.velocitySlider.value()
+        self.velocitySlider.sliderReleased.connect(lambda: self.value_change())
+        self.controls.connect('COM3', 115200)
+        self.jogTimer = QTimer()
 #   #   #       funkcije tipk       #    #    #
         self.load_img_btn.clicked.connect(self.get_image)
         self.start_btn.clicked.connect(self.start)
         self.stop_btn.clicked.connect(self.stop)
-        self.pause_btn.clicked.connect(self.pause)
-        self.calibrate_btn.clicked.connect(self.calibrate)
+        self.pause_btn.clicked.connect(self.set_pause)
         self.risi_btn.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(1))
         self.nazaj_btn.clicked.connect(lambda: self.stackedWidget.setCurrentIndex(0))
-        self.x_inc.pressed.connect(lambda: self.jog_mode(XINC))
-        self.x_decr.pressed.connect(lambda: self.jog_mode(XDEC))
-        self.y_inc.pressed.connect(lambda: self.jog_mode(YINC))
-        self.y_decr.pressed.connect(lambda: self.jog_mode(YDEC))
+        self.x_inc.pressed.connect(lambda: self.jog_mode(XINC, self.hitrost))       #lambda start=false
+        self.x_decr.pressed.connect(lambda: self.jog_mode(XDEC, self.hitrost))
+        self.y_inc.pressed.connect(lambda: self.jog_mode(YINC, self.hitrost))
+        self.y_decr.pressed.connect(lambda: self.jog_mode(YDEC, self.hitrost))
+        self.x_inc.released.connect(lambda: self.jog_mode_release())
+        self.x_decr.released.connect(lambda: self.jog_mode_release())
+        self.y_inc.released.connect(lambda: self.jog_mode_release())
+        self.y_decr.released.connect(lambda: self.jog_mode_release())
+
 
         timer = QTimer(self)
-        timer.timeout.connect(lambda: print('sekunda'))
+        timer.timeout.connect(self._command_handler)
         timer.start(1000)
 
 
+
+
+    def value_change(self):
+        self.hitrost = self.velocitySlider.value()
 
     def check_gcode(self, line):
         x = line.split(' ')
@@ -90,27 +102,47 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             print('nothing to see here')
 
-    def jog_mode(self, direction, velocity):
-        pass#BojanControls.jog(direction, velocity)
+    def jog_mode(self, direction, vel):
+        self.controls.jog(direction, vel)
 
+    def jog_mode_release(self):
+        self.controls.jog('', '')
 
-    def which_port(self, port):
-        pass
+    def close_event(self):
+        self.controls.disconnect()
 
     def start(self):
+        self.progressBar.show()
         self.controls.load_gcode(self.gcode)
 
     def stop(self):
         self.controls.emergency_stop()
 
-    def pause(self):
-        print('pause')
+    def set_pause(self):
+        self.controls.pause()
 
-    def calibrate(self):
-        print('calibrate')
+    def ports(self):
+        self.port_btn.addItems(self.port)
 
-    def vodenje(self):
-        print('vodenje')
+    def _command_handler(self):
+        # Split package
+        return
+        command, data = self.controls.read_RXqueue()
+
+        # Handle commands
+        if command == SerialCom.SERIAL_COMMAND_SCAN:
+            return
+        elif command == SerialCom.SERIAL_COMMAND_CONNECT:
+            return
+        elif command == SerialCom.SERIAL_COMMAND_DISCONNECT:
+            return
+        elif command == SerialCom.SERIAL_COMMAND_READ:
+            return
+        elif command == SerialCom.SERIAL_COMMAND_WRITE:
+            return
+        else:
+            print('Invaild command!')
+
 #   #   #    funkcije gumbov     #   #   #
 
 

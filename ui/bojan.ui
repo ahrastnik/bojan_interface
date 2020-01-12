@@ -31,7 +31,7 @@
        <bool>true</bool>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
        <widget class="QFrame" name="frame">
@@ -333,43 +333,6 @@ border-radius:25px;</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="3">
-           <widget class="QPushButton" name="calibrate_btn">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>90</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="sizeIncrement">
-             <size>
-              <width>0</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Luckiest Guy</family>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: white;
-color: rgb(69, 124, 182);
-color: black;
-border: 2px solid #457cb6;
-border-radius:7%;</string>
-            </property>
-            <property name="text">
-             <string>Kalibriraj</string>
-            </property>
-           </widget>
-          </item>
           <item row="3" column="0">
            <widget class="QPushButton" name="x_decr">
             <property name="minimumSize">
@@ -446,6 +409,28 @@ border-radius:7%;</string>
             </property>
            </widget>
           </item>
+          <item row="5" column="3">
+           <widget class="QComboBox" name="port_btn">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Luckiest Guy</family>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: white;
+color: rgb(69, 124, 182);
+color: black;
+border: 2px solid #457cb6;
+border-radius:7%;</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </widget>
@@ -499,22 +484,6 @@ border-image: url(C:/Users/jakak/Desktop/Jaka/Šola/4.letnik/NEMI/bojan_interfac
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout_4">
-          <item row="4" column="0">
-           <widget class="QLabel" name="label_7">
-            <property name="font">
-             <font>
-              <family>Luckiest Guy</family>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color:</string>
-            </property>
-            <property name="text">
-             <string>TRENUTNA POZICIJA Z</string>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="0">
            <widget class="QLabel" name="x_poz">
             <property name="maximumSize">
@@ -571,43 +540,19 @@ font: 8pt &quot;Luckiest Guy&quot;;</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="z_poz">
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>50</height>
-             </size>
-            </property>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_7">
             <property name="font">
              <font>
               <family>Luckiest Guy</family>
-              <pointsize>8</pointsize>
-              <weight>50</weight>
-              <italic>false</italic>
-              <bold>false</bold>
+              <pointsize>10</pointsize>
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color:white;
-border:2px solid #457cb6;
-color: black;
-font: 8pt &quot;Luckiest Guy&quot;;</string>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::Box</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Sunken</enum>
-            </property>
-            <property name="lineWidth">
-             <number>1</number>
-            </property>
-            <property name="midLineWidth">
-             <number>1</number>
+             <string notr="true">color:</string>
             </property>
             <property name="text">
-             <string/>
+             <string>Progress bar</string>
             </property>
            </widget>
           </item>
@@ -664,6 +609,13 @@ font: 8pt &quot;Luckiest Guy&quot;;</string>
             </property>
             <property name="text">
              <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QProgressBar" name="progressBar">
+            <property name="value">
+             <number>24</number>
             </property>
            </widget>
           </item>
@@ -904,16 +856,6 @@ border-radius:7%;</string>
      </widget>
     </item>
    </layout>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1028</width>
-     <height>26</height>
-    </rect>
-   </property>
   </widget>
  </widget>
  <resources/>

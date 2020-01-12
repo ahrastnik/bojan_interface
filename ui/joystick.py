@@ -2,8 +2,11 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QGridLayout, QStyleFactory
 import sys
+import time
+
 from enum import Enum
 import math
+
 
 from PyQt5.QtWidgets import QApplication
 from PyQt5.uic.properties import QtCore
@@ -15,12 +18,14 @@ class Direction(Enum):
     Down = 3
 
 class Joystick(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, controls, parent=None):
         super(Joystick, self).__init__(parent)
+        self.controls = controls
         self.setMinimumSize(150, 150)
         self.movingOffset = QPointF(0, 0)
         self.grabCenter = False
         self.__maxDistance = 50
+
 
     def paintEvent(self, event):
         painter = QPainter(self)
@@ -50,9 +55,11 @@ class Joystick(QWidget):
         normVector = QLineF(self._center(), self.movingOffset)
         currentDistance = normVector.length()
         angle = normVector.angle()*math.pi/180
-
-        distance = min(currentDistance / self.__maxDistance, 1.0)
-        return ('hitrost x: ',math.cos(angle),'hitrost y: ', math.sin(angle))
+        self.X = str(math.cos(angle)*15)
+        self.Y = str(math.sin(angle)*15)
+        distance ='X' + self.X + ' Y' + self.Y
+        self.controls.jog(distance, '')
+        return distance
 
     def mousePressEvent(self, ev):
         self.grabCenter = self._centerEllipse().contains(ev.pos())
@@ -62,13 +69,14 @@ class Joystick(QWidget):
         self.grabCenter = False
         self.movingOffset = QPointF(0, 0)
         self.update()
+        self.controls.jog('','')
+
 
     def mouseMoveEvent(self, event):
         if self.grabCenter:
-            print("Moving")
             self.movingOffset = self._boundJoystick(event.pos())
             self.update()
-        print(self.joystickDirection())
+        self.joystickDirection()
 
 '''if __name__ == '__main__':
     # Create main application window

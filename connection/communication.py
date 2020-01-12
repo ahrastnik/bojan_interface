@@ -3,12 +3,12 @@ Bojan communication
 """
 import serial                       # import pySerial
 from serial.tools import list_ports
-from time import sleep
+from time import sleep, perf_counter, time
 from queue import Empty
+from PyQt5.QtCore import QThread
 
 
 class Communication:
-
 
     def __init__(self, RXqueue, TXqueue):
         self.TXqueue = TXqueue
@@ -27,7 +27,7 @@ class Communication:
         return ""
 
 
-class SerialCom(Communication):
+class SerialCom(Communication, QThread):
     # Serial communicator commands
     SERIAL_COMMAND_SCAN = "SERIAL_COMMAND_SCAN"
     SERIAL_COMMAND_CONNECT = "SERIAL_COMMAND_CONNECT"
@@ -35,6 +35,8 @@ class SerialCom(Communication):
     SERIAL_COMMAND_WRITE = "SERIAL_COMMAND_WRITE"
     SERIAL_COMMAND_READ = "SERIAL_COMMAND_READ"
     SERIAL_COMMAND_RESPONSE = "ACK"
+    SERIAL_REPLY_TIMEOUT = 5.0
+    SERIAL_READ_TIMEOUT = 5.0
 
     def __init__(self, RXqueue=None, TXqueue=None):
         # super().__init__() - call from base class
@@ -45,16 +47,18 @@ class SerialCom(Communication):
 
     def run(self):
         self.__started = True
-
+        print('START')
         while self.__started:
             try:
                 package = self.TXqueue.get(block=True, timeout=1.0)
-                print(package)#self._command_handler(package)
+                self.TXqueue.task_done()
+                self._command_handler(package)
             except Empty:
                 pass
 
     def _command_handler(self, package):
         # Split package
+        print('c_h', package)
         command, data = package
         # Handle commands
         if command == SerialCom.SERIAL_COMMAND_SCAN:
@@ -86,7 +90,7 @@ class SerialCom(Communication):
             return
 
         super().connect()
-        self.ser = serial.Serial()
+        self.ser = serial.Serial(timeout=SerialCom.SERIAL_READ_TIMEOUT)
         self.ser.baudrate = baudrate
         self.ser.port = port
         self.ser.open()
@@ -100,13 +104,14 @@ class SerialCom(Communication):
         self.ser = None
 
     def write(self, data):
+        print(data)
         self.ser.write(data.encode('utf-8'))
+        print(data.encode('utf-8'))
         self.ser.flush()
-        while True:
-            ack = self.read()
-            if ack == SerialCom.SERIAL_COMMAND_RESPONSE:
-                break
-            sleep(0.005)
+        ack = self.read()
+        print(ack)
+        if ack == SerialCom.SERIAL_COMMAND_RESPONSE:
+            return
 
     def close_thread(self):
         self.__started = False
@@ -116,3 +121,9 @@ class SerialCom(Communication):
         data = data.decode("utf-8")
         data = data[0:-1]
         return data
+
+
+class CommThread(QThread):
+    def __init__(self, rx_queue, tx_queue):
+        super().__init__()
+        self.comm = SerialCom(RXqueue=rx_queue, TXqueue=tx_queue)
