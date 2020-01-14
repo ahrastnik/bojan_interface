@@ -154,10 +154,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             return
         elif command == SerialCom.SERIAL_COMMAND_WRITE:
             return
-        elif command == SerialCom.SERIAL_COMMAND__GCODE_RESPONSE:
+        elif command == SerialCom.SERIAL_COMMAND_GCODE_RESPONSE:
             if data == len(self.gcode) - 1:
                 self.progressBar.hide()
             self.progressBar.setValue(math.ceil(data*(100/len(self.gcode))))
+        elif command == SerialCom.SERIAL_COMMAND_RESPONSE:
+            return
         else:
             print('Invaild command!')
 
