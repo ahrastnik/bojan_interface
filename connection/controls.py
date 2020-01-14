@@ -69,8 +69,8 @@ class BojanControls:
         self._send_command(SerialCom.SERIAL_COMMAND_DISCONNECT)
 
     def load_gcode(self, gcode):
-        for line in gcode:
-            self._send_command(SerialCom.SERIAL_COMMAND_WRITE, line)
+        for i, line in enumerate(gcode):
+            self._send_command(SerialCom.SERIAL_COMMAND_GCODE_RESPONSE, (line, i))
 
     def close(self):
         self.comm_thread.comm.close_thread()

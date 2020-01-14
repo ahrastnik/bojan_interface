@@ -35,6 +35,7 @@ class SerialCom(Communication, QThread):
     SERIAL_COMMAND_WRITE = "SERIAL_COMMAND_WRITE"
     SERIAL_COMMAND_READ = "SERIAL_COMMAND_READ"
     SERIAL_COMMAND_RESPONSE = "ACK"
+    SERIAL_COMMAND_GCODE_RESPONSE = "GCODE"
     SERIAL_REPLY_TIMEOUT = 5.0
     SERIAL_READ_TIMEOUT = 5.0
 
@@ -75,6 +76,9 @@ class SerialCom(Communication, QThread):
             return
         elif command == SerialCom.SERIAL_COMMAND_WRITE:
             self.write(data)
+            return
+        elif command == SerialCom.SERIAL_COMMAND_GCODE_RESPONSE:
+            self.write_gcode(*data)
             return
         else:
             print('Invaild command!')
@@ -123,6 +127,8 @@ class SerialCom(Communication, QThread):
         self.ser = None
 
     def write(self, data):
+        if self.ser is None:
+            return
         # Append line termination
         data += '\r\n'
         # Write data
@@ -132,7 +138,19 @@ class SerialCom(Communication, QThread):
         ack = self.read()
         print(ack)
         if ack == SerialCom.SERIAL_COMMAND_RESPONSE:
+            package = (SerialCom.SERIAL_COMMAND_RESPONSE,
+                       data)
+            self.RXqueue.put(package)
             return
+
+    def write_gcode(self, data, index):
+        if self.ser is None:
+            return
+        self.write(data)
+        package = (SerialCom.SERIAL_COMMAND_GCODE_RESPONSE,
+                   index)
+        self.RXqueue.put(package)
+
 
     def close_thread(self):
         self.__started = False

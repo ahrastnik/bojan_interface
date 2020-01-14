@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import *
 from connection.communication import SerialCom
 from connection.controls import BojanControls
 import sys
-import time
+import math
 
 
 from ui.joystick import Joystick
@@ -33,11 +33,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.gcode = []
         self.port = ['COM1','COM2','COM3']
         self.progressBar.hide()
-        self.pause = True #for pause button
+        self.progressBar.setValue(69)
         self.hitrost = self.velocitySlider.value()
         self.velocitySlider.sliderReleased.connect(lambda: self.value_change())
         self.jogTimer = QTimer()
-        self.connectionStatus
+        self.connectionStatus = False
 #   #   #       funkcije tipk       #    #    #
         self.load_img_btn.clicked.connect(self.get_image)
         self.start_btn.clicked.connect(self.start)
@@ -152,6 +152,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             return
         elif command == SerialCom.SERIAL_COMMAND_WRITE:
             return
+        elif command == SerialCom.SERIAL_COMMAND__GCODE_RESPONSE:
+            self.progressBar.setValue(math.ceil(data*(100/len(self.gcode))))
         else:
             print('Invaild command!')
 
