@@ -38,6 +38,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.velocitySlider.sliderReleased.connect(lambda: self.value_change())
         #self.controls.connect('COM9', 115200)
         self.jogTimer = QTimer()
+        self.connectionStatus
+        connectionStatus = False
 #   #   #       funkcije tipk       #    #    #
         self.load_img_btn.clicked.connect(self.get_image)
         self.start_btn.clicked.connect(self.start)
@@ -53,11 +55,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.x_decr.released.connect(lambda: self.jog_mode_release())
         self.y_inc.released.connect(lambda: self.jog_mode_release())
         self.y_decr.released.connect(lambda: self.jog_mode_release())
-        self.povezi_btn.clicked.connect(lambda: self.controls.connect(self.port_btn.currentText(), 115200))
+        self.povezi_btn.clicked.connect(lambda: self.connect_port(self.port_btn.currentText()))
         timer = QTimer(self)
         timer.timeout.connect(self._command_handler)
         timer.start(1000)
         self.controls.scan_ports()
+
+    def connect_port(self, port):
+        if self.connectionStatus == True:
+            self.controls.disconnect()
+            self.povezi_btn.setText("Poveži")
+            self.connectionStatus = False
+        else:
+            self.controls.connect(port, 115200)
+            self.povezi_btn.setText("Odveži")
+            self.connectionStatus = True
 
     def value_change(self):
         self.hitrost = self.velocitySlider.value()
