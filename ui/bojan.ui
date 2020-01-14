@@ -62,74 +62,6 @@
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
-          <item row="2" column="3">
-           <widget class="QPushButton" name="stop_btn">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>90</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="sizeIncrement">
-             <size>
-              <width>0</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Luckiest Guy</family>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: white;
-color: rgb(69, 124, 182);
-color: black;
-border: 2px solid #457cb6;
-border-radius:7%;</string>
-            </property>
-            <property name="text">
-             <string>Stop</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="3">
-           <widget class="QPushButton" name="risi_btn">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>90</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Luckiest Guy</family>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: white;
-color: rgb(69, 124, 182);
-color: black;
-border: 2px solid #457cb6;
-border-radius:7%;</string>
-            </property>
-            <property name="text">
-             <string>rIŠI</string>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="0">
            <widget class="QLabel" name="label">
             <property name="maximumSize">
@@ -232,43 +164,6 @@ border-radius:25px;
             </property>
            </spacer>
           </item>
-          <item row="3" column="3">
-           <widget class="QPushButton" name="pause_btn">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>30</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>90</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="sizeIncrement">
-             <size>
-              <width>0</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="font">
-             <font>
-              <family>Luckiest Guy</family>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: white;
-color: rgb(69, 124, 182);
-color: black;
-border: 2px solid #457cb6;
-border-radius:7%;</string>
-            </property>
-            <property name="text">
-             <string>Pavza</string>
-            </property>
-           </widget>
-          </item>
           <item row="3" column="2">
            <widget class="QPushButton" name="x_inc">
             <property name="minimumSize">
@@ -365,7 +260,14 @@ border-radius:25px;</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="3">
+          <item row="1" column="4" rowspan="5">
+           <widget class="QSlider" name="velocitySlider">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
            <widget class="QPushButton" name="start_btn">
             <property name="minimumSize">
              <size>
@@ -402,14 +304,112 @@ border-radius:7%;</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="4" rowspan="5">
-           <widget class="QSlider" name="velocitySlider">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
+          <item row="1" column="3">
+           <widget class="QPushButton" name="stop_btn">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>90</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="sizeIncrement">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Luckiest Guy</family>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: white;
+color: rgb(69, 124, 182);
+color: black;
+border: 2px solid #457cb6;
+border-radius:7%;</string>
+            </property>
+            <property name="text">
+             <string>Stop</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="3">
+          <item row="2" column="3">
+           <widget class="QPushButton" name="pause_btn">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>90</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="sizeIncrement">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Luckiest Guy</family>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: white;
+color: rgb(69, 124, 182);
+color: black;
+border: 2px solid #457cb6;
+border-radius:7%;</string>
+            </property>
+            <property name="text">
+             <string>Pavza</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="3">
+           <widget class="QPushButton" name="risi_btn">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>90</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Luckiest Guy</family>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: white;
+color: rgb(69, 124, 182);
+color: black;
+border: 2px solid #457cb6;
+border-radius:7%;</string>
+            </property>
+            <property name="text">
+             <string>rIŠI</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="3">
            <widget class="QComboBox" name="port_btn">
             <property name="minimumSize">
              <size>
@@ -428,6 +428,37 @@ color: rgb(69, 124, 182);
 color: black;
 border: 2px solid #457cb6;
 border-radius:7%;</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="3">
+           <widget class="QPushButton" name="povezi_btn">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>90</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Luckiest Guy</family>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: white;
+color: rgb(69, 124, 182);
+color: black;
+border: 2px solid #457cb6;
+border-radius:7%;</string>
+            </property>
+            <property name="text">
+             <string>poveži</string>
             </property>
            </widget>
           </item>

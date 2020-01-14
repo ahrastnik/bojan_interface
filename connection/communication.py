@@ -81,7 +81,7 @@ class SerialCom(Communication, QThread):
 
     def scan_ports(self):
         ports = list_ports.comports(include_links=False)
-        package = (SerialCom.SERIAL_COMMAND_SCAN, ports)
+        package = (SerialCom.SERIAL_COMMAND_SCAN, [i.device for i in ports])
         self.RXqueue.put(package)
 
     def serial_connect(self, port, baudrate):

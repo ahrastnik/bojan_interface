@@ -36,7 +36,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pause = True #for pause button
         self.hitrost = self.velocitySlider.value()
         self.velocitySlider.sliderReleased.connect(lambda: self.value_change())
-        self.controls.connect('COM9', 115200)
+        #self.controls.connect('COM9', 115200)
         self.jogTimer = QTimer()
 #   #   #       funkcije tipk       #    #    #
         self.load_img_btn.clicked.connect(self.get_image)
@@ -53,7 +53,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.x_decr.released.connect(lambda: self.jog_mode_release())
         self.y_inc.released.connect(lambda: self.jog_mode_release())
         self.y_decr.released.connect(lambda: self.jog_mode_release())
-
+        self.povezi_btn.clicked.connect(lambda: self._command_handler(SerialCom.SERIAL_COMMAND_CONNECT))
         timer = QTimer(self)
         timer.timeout.connect(self._command_handler)
         timer.start(1000)
@@ -118,9 +118,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def set_pause(self):
         self.controls.pause()
 
-    def ports(self):
-        self.port_btn.addItems(self.port)
-
     def _command_handler(self):
         # Split package
         package = self.controls.read_RXqueue()
@@ -132,6 +129,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # Handle commands
         if command == SerialCom.SERIAL_COMMAND_SCAN:
+            self.port_btn.addItems(data)
             return
         elif command == SerialCom.SERIAL_COMMAND_CONNECT:
             return

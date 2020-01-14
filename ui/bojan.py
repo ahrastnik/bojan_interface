@@ -40,33 +40,6 @@ class Ui_MainWindow(object):
         self.gridLayout_3 = QtWidgets.QGridLayout(self.gridLayoutWidget_2)
         self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_3.setObjectName("gridLayout_3")
-        self.stop_btn = QtWidgets.QPushButton(self.gridLayoutWidget_2)
-        self.stop_btn.setMinimumSize(QtCore.QSize(0, 30))
-        self.stop_btn.setMaximumSize(QtCore.QSize(90, 16777215))
-        self.stop_btn.setSizeIncrement(QtCore.QSize(0, 0))
-        font = QtGui.QFont()
-        font.setFamily("Luckiest Guy")
-        self.stop_btn.setFont(font)
-        self.stop_btn.setStyleSheet("background-color: white;\n"
-"color: rgb(69, 124, 182);\n"
-"color: black;\n"
-"border: 2px solid #457cb6;\n"
-"border-radius:7%;")
-        self.stop_btn.setObjectName("stop_btn")
-        self.gridLayout_3.addWidget(self.stop_btn, 2, 3, 1, 1)
-        self.risi_btn = QtWidgets.QPushButton(self.gridLayoutWidget_2)
-        self.risi_btn.setMinimumSize(QtCore.QSize(0, 30))
-        self.risi_btn.setMaximumSize(QtCore.QSize(90, 16777215))
-        font = QtGui.QFont()
-        font.setFamily("Luckiest Guy")
-        self.risi_btn.setFont(font)
-        self.risi_btn.setStyleSheet("background-color: white;\n"
-"color: rgb(69, 124, 182);\n"
-"color: black;\n"
-"border: 2px solid #457cb6;\n"
-"border-radius:7%;")
-        self.risi_btn.setObjectName("risi_btn")
-        self.gridLayout_3.addWidget(self.risi_btn, 4, 3, 1, 1)
         self.label = QtWidgets.QLabel(self.gridLayoutWidget_2)
         self.label.setMaximumSize(QtCore.QSize(16777215, 21))
         font = QtGui.QFont()
@@ -104,20 +77,6 @@ class Ui_MainWindow(object):
         self.gridLayout_3.addItem(spacerItem, 2, 1, 1, 1)
         spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         self.gridLayout_3.addItem(spacerItem1, 4, 1, 1, 1)
-        self.pause_btn = QtWidgets.QPushButton(self.gridLayoutWidget_2)
-        self.pause_btn.setMinimumSize(QtCore.QSize(0, 30))
-        self.pause_btn.setMaximumSize(QtCore.QSize(90, 16777215))
-        self.pause_btn.setSizeIncrement(QtCore.QSize(0, 0))
-        font = QtGui.QFont()
-        font.setFamily("Luckiest Guy")
-        self.pause_btn.setFont(font)
-        self.pause_btn.setStyleSheet("background-color: white;\n"
-"color: rgb(69, 124, 182);\n"
-"color: black;\n"
-"border: 2px solid #457cb6;\n"
-"border-radius:7%;")
-        self.pause_btn.setObjectName("pause_btn")
-        self.gridLayout_3.addWidget(self.pause_btn, 3, 3, 1, 1)
         self.x_inc = QtWidgets.QPushButton(self.gridLayoutWidget_2)
         self.x_inc.setMinimumSize(QtCore.QSize(50, 50))
         self.x_inc.setMaximumSize(QtCore.QSize(50, 16777215))
@@ -157,6 +116,10 @@ class Ui_MainWindow(object):
         self.x_decr.setText("")
         self.x_decr.setObjectName("x_decr")
         self.gridLayout_3.addWidget(self.x_decr, 3, 0, 1, 1)
+        self.velocitySlider = QtWidgets.QSlider(self.gridLayoutWidget_2)
+        self.velocitySlider.setOrientation(QtCore.Qt.Vertical)
+        self.velocitySlider.setObjectName("velocitySlider")
+        self.gridLayout_3.addWidget(self.velocitySlider, 1, 4, 5, 1)
         self.start_btn = QtWidgets.QPushButton(self.gridLayoutWidget_2)
         self.start_btn.setMinimumSize(QtCore.QSize(0, 30))
         self.start_btn.setMaximumSize(QtCore.QSize(90, 16777215))
@@ -170,11 +133,48 @@ class Ui_MainWindow(object):
 "border: 2px solid #457cb6;\n"
 "border-radius:7%;")
         self.start_btn.setObjectName("start_btn")
-        self.gridLayout_3.addWidget(self.start_btn, 1, 3, 1, 1)
-        self.velocitySlider = QtWidgets.QSlider(self.gridLayoutWidget_2)
-        self.velocitySlider.setOrientation(QtCore.Qt.Vertical)
-        self.velocitySlider.setObjectName("velocitySlider")
-        self.gridLayout_3.addWidget(self.velocitySlider, 1, 4, 5, 1)
+        self.gridLayout_3.addWidget(self.start_btn, 0, 3, 1, 1)
+        self.stop_btn = QtWidgets.QPushButton(self.gridLayoutWidget_2)
+        self.stop_btn.setMinimumSize(QtCore.QSize(0, 30))
+        self.stop_btn.setMaximumSize(QtCore.QSize(90, 16777215))
+        self.stop_btn.setSizeIncrement(QtCore.QSize(0, 0))
+        font = QtGui.QFont()
+        font.setFamily("Luckiest Guy")
+        self.stop_btn.setFont(font)
+        self.stop_btn.setStyleSheet("background-color: white;\n"
+"color: rgb(69, 124, 182);\n"
+"color: black;\n"
+"border: 2px solid #457cb6;\n"
+"border-radius:7%;")
+        self.stop_btn.setObjectName("stop_btn")
+        self.gridLayout_3.addWidget(self.stop_btn, 1, 3, 1, 1)
+        self.pause_btn = QtWidgets.QPushButton(self.gridLayoutWidget_2)
+        self.pause_btn.setMinimumSize(QtCore.QSize(0, 30))
+        self.pause_btn.setMaximumSize(QtCore.QSize(90, 16777215))
+        self.pause_btn.setSizeIncrement(QtCore.QSize(0, 0))
+        font = QtGui.QFont()
+        font.setFamily("Luckiest Guy")
+        self.pause_btn.setFont(font)
+        self.pause_btn.setStyleSheet("background-color: white;\n"
+"color: rgb(69, 124, 182);\n"
+"color: black;\n"
+"border: 2px solid #457cb6;\n"
+"border-radius:7%;")
+        self.pause_btn.setObjectName("pause_btn")
+        self.gridLayout_3.addWidget(self.pause_btn, 2, 3, 1, 1)
+        self.risi_btn = QtWidgets.QPushButton(self.gridLayoutWidget_2)
+        self.risi_btn.setMinimumSize(QtCore.QSize(0, 30))
+        self.risi_btn.setMaximumSize(QtCore.QSize(90, 16777215))
+        font = QtGui.QFont()
+        font.setFamily("Luckiest Guy")
+        self.risi_btn.setFont(font)
+        self.risi_btn.setStyleSheet("background-color: white;\n"
+"color: rgb(69, 124, 182);\n"
+"color: black;\n"
+"border: 2px solid #457cb6;\n"
+"border-radius:7%;")
+        self.risi_btn.setObjectName("risi_btn")
+        self.gridLayout_3.addWidget(self.risi_btn, 3, 3, 1, 1)
         self.port_btn = QtWidgets.QComboBox(self.gridLayoutWidget_2)
         self.port_btn.setMinimumSize(QtCore.QSize(0, 30))
         font = QtGui.QFont()
@@ -186,7 +186,20 @@ class Ui_MainWindow(object):
 "border: 2px solid #457cb6;\n"
 "border-radius:7%;")
         self.port_btn.setObjectName("port_btn")
-        self.gridLayout_3.addWidget(self.port_btn, 5, 3, 1, 1)
+        self.gridLayout_3.addWidget(self.port_btn, 4, 3, 1, 1)
+        self.povezi_btn = QtWidgets.QPushButton(self.gridLayoutWidget_2)
+        self.povezi_btn.setMinimumSize(QtCore.QSize(0, 30))
+        self.povezi_btn.setMaximumSize(QtCore.QSize(90, 16777215))
+        font = QtGui.QFont()
+        font.setFamily("Luckiest Guy")
+        self.povezi_btn.setFont(font)
+        self.povezi_btn.setStyleSheet("background-color: white;\n"
+"color: rgb(69, 124, 182);\n"
+"color: black;\n"
+"border: 2px solid #457cb6;\n"
+"border-radius:7%;")
+        self.povezi_btn.setObjectName("povezi_btn")
+        self.gridLayout_3.addWidget(self.povezi_btn, 5, 3, 1, 1)
         self.frame_3 = QtWidgets.QFrame(self.page)
         self.frame_3.setGeometry(QtCore.QRect(510, 0, 491, 381))
         self.frame_3.setStyleSheet("background-color:#5CA2F1;")
@@ -389,11 +402,12 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Bojan"))
-        self.stop_btn.setText(_translate("MainWindow", "Stop"))
-        self.risi_btn.setText(_translate("MainWindow", "rIŠI"))
         self.label.setText(_translate("MainWindow", "JOG"))
-        self.pause_btn.setText(_translate("MainWindow", "Pavza"))
         self.start_btn.setText(_translate("MainWindow", "Start"))
+        self.stop_btn.setText(_translate("MainWindow", "Stop"))
+        self.pause_btn.setText(_translate("MainWindow", "Pavza"))
+        self.risi_btn.setText(_translate("MainWindow", "rIŠI"))
+        self.povezi_btn.setText(_translate("MainWindow", "poveži"))
         self.label_3.setText(_translate("MainWindow", "TRENUTNA POZICIJA X"))
         self.label_7.setText(_translate("MainWindow", "Progress bar"))
         self.label_5.setText(_translate("MainWindow", "TRENUTNA POZICIJA Y"))
