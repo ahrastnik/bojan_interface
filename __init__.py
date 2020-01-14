@@ -34,7 +34,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.port = ['COM1','COM2','COM3']
         self.progressBar.hide()
         self.progressBar.setValue(69)
-        self.hitrost = self.velocitySlider.value()
+        self.hitrost = self.velocitySlider.value()*1.5
         self.velocitySlider.sliderReleased.connect(lambda: self.value_change())
         self.jogTimer = QTimer()
         self.connectionStatus = False
