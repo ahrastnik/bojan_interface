@@ -31,7 +31,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.gridLayout_3.addWidget(self.joystick, 3, 1)
         QAction("Quit",self).triggered.connect(lambda: self.close_event())
         self.gcode = []
-        self.port = ['COM1','COM2','COM3']
         self.progressBar.hide()
         self.progressBar.setValue(69)
         self.hitrost = self.velocitySlider.value()*1.5

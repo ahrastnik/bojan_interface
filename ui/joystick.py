@@ -11,6 +11,8 @@ import math
 from PyQt5.QtWidgets import QApplication
 from PyQt5.uic.properties import QtCore
 
+MAXIMAL_FEEDRATE = 150
+
 class Direction(Enum):
     Left = 0
     Right = 1
@@ -53,11 +55,11 @@ class Joystick(QWidget):
         if not self.grabCenter:
             return 0
         normVector = QLineF(self._center(), self.movingOffset)
-        currentDistance = normVector.length()
+        currentDistance = normVector.length()/50
         angle = normVector.angle()*math.pi/180
-        self.X = str(math.cos(angle)*currentDistance*3)
-        self.Y = str(math.sin(angle)*currentDistance*3)
-        distance ='X' + self.X + ' Y' + self.Y
+        self.X = round((math.cos(angle)*currentDistance*MAXIMAL_FEEDRATE), 5)
+        self.Y = round((math.sin(angle)*currentDistance*MAXIMAL_FEEDRATE), 5)
+        distance ='X' + str(self.X) + ' Y' + str(self.Y)
         self.controls.jog(distance, '')
         return distance
 
