@@ -87,13 +87,32 @@ class SerialCom(Communication, QThread):
     def serial_connect(self, port, baudrate):
         if self.ser is not None:
             print('Serial connection already opened!')
+            package = (
+                SerialCom.SERIAL_COMMAND_CONNECT,
+                True
+            )
+            self.RXqueue.put(package)
             return
 
-        super().connect()
-        self.ser = serial.Serial(timeout=SerialCom.SERIAL_READ_TIMEOUT)
-        self.ser.baudrate = baudrate
-        self.ser.port = port
-        self.ser.open()
+        try:
+            super().connect()
+            self.ser = serial.Serial(timeout=SerialCom.SERIAL_READ_TIMEOUT)
+            self.ser.baudrate = baudrate
+            self.ser.port = port
+            self.ser.open()
+
+            package = (
+                SerialCom.SERIAL_COMMAND_CONNECT,
+                True
+            )
+            self.RXqueue.put(package)
+
+        except serial.SerialException:
+            package = (
+                SerialCom.SERIAL_COMMAND_CONNECT,
+                False
+            )
+            self.RXqueue.put(package)
 
     def disconnect(self):
         if self.ser is None:

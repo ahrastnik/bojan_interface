@@ -53,10 +53,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.x_decr.released.connect(lambda: self.jog_mode_release())
         self.y_inc.released.connect(lambda: self.jog_mode_release())
         self.y_decr.released.connect(lambda: self.jog_mode_release())
-        self.povezi_btn.clicked.connect(lambda: self._command_handler(SerialCom.SERIAL_COMMAND_CONNECT))
+        self.povezi_btn.clicked.connect(lambda: self.controls.connect(self.port_btn.currentText(), 115200))
         timer = QTimer(self)
         timer.timeout.connect(self._command_handler)
         timer.start(1000)
+        self.controls.scan_ports()
 
     def value_change(self):
         self.hitrost = self.velocitySlider.value()
@@ -132,6 +133,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.port_btn.addItems(data)
             return
         elif command == SerialCom.SERIAL_COMMAND_CONNECT:
+            conneciton_status = data
+            print("Connection status: ", conneciton_status)
             return
         elif command == SerialCom.SERIAL_COMMAND_DISCONNECT:
             return
