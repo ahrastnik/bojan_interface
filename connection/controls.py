@@ -44,6 +44,13 @@ class BojanControls:
         except Empty:
             return None
 
+    def read_all(self):
+        while True:
+            try:
+                self.TX_queue.get_nowait()
+            except Empty:
+                return
+
     def pause(self):
         self._send_command(SerialCom.SERIAL_COMMAND_WRITE, BojanControls.COMMAND_PAUSE)
 

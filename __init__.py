@@ -124,6 +124,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.controls.load_gcode(self.gcode)
 
     def stop(self):
+        self.gcode = []
+        self.controls.read_all()
         self.controls.emergency_stop()
 
     def set_pause(self):
