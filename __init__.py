@@ -36,10 +36,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pause = True #for pause button
         self.hitrost = self.velocitySlider.value()
         self.velocitySlider.sliderReleased.connect(lambda: self.value_change())
-        #self.controls.connect('COM9', 115200)
         self.jogTimer = QTimer()
         self.connectionStatus
-        connectionStatus = False
 #   #   #       funkcije tipk       #    #    #
         self.load_img_btn.clicked.connect(self.get_image)
         self.start_btn.clicked.connect(self.start)
