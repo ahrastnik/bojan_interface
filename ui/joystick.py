@@ -55,8 +55,8 @@ class Joystick(QWidget):
         normVector = QLineF(self._center(), self.movingOffset)
         currentDistance = normVector.length()
         angle = normVector.angle()*math.pi/180
-        self.X = str(math.cos(angle)*15)
-        self.Y = str(math.sin(angle)*15)
+        self.X = str(math.cos(angle)*currentDistance/3.4)
+        self.Y = str(math.sin(angle)*currentDistance/3.4)
         distance ='X' + self.X + ' Y' + self.Y
         self.controls.jog(distance, '')
         return distance
@@ -84,7 +84,6 @@ class Joystick(QWidget):
     app.setStyle(QStyleFactory.create("Cleanlooks"))
     mw = QMainWindow()
     mw.setWindowTitle('Joystick example')
-    print(type(Joystick))
     # Create and set widget layout
     # Main widget container
     cw = QWidget()
